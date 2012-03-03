@@ -72,6 +72,11 @@
             if($field == 'delall' && $value == true) {
                 clean_data();
             }
+            
+            if($field == 'testglobal' && $value == true) {
+                test_global_search();
+            }
+            
             if($field == 'registration' && $value == true) {
                 echo $OUTPUT->box("<b><a href=\"https://spreadsheets.google.com/viewform?formkey=dFRPVTRiSkNzSzI1cTVManUwNWVKZXc6MQ\" target=\"_new\">Please follow this link to register!</a></b>");
             }
@@ -88,6 +93,42 @@ function clean_data(){
     $DB->delete_records("plagiarism_crotpro_config");
     $DB->delete_records("plagiarism_crotpro_job");
     notify(get_string('tables_cleaned_up','plagiarism_crotpro'), 'notifysuccess');
+}
+
+function test_global_search(){
+    // method sends a few queries to test search
+  	global $CFG;
+        require_once($CFG->dirroot. '/plagiarism/crotpro/post_xml.php');
+        $plagiarismsettings = (array)get_config('plagiarism');
+        $account_id = $plagiarismsettings['crotpro_account_id']; // get account id
+        $service_url = $plagiarismsettings['crotpro_service_url']; // pds service link
+        $params = array(
+            "uid"=>urlencode($account_id)
+        );
+	// testing global connectivity
+	echo "Testing global connectivity & xml parsers...<br>";
+        // access http://pds.noplagiarism.org/connect.xml
+        $service_url = "http://pds.noplagiarism.org/"; //remove later
+        $url =$service_url.'/connect.xml';
+        $port = 80;
+        $response = xml_post($params, $url, $port); // sends file to the web service
+        $xml = new DOMDocument();
+        if($xml->loadXML($response)){ // get back response
+            echo "<i>$service_url is accessible from your server - <font color=\"green\"><b>OK</b></font></i><br><hr>";
+            $m = $xml->getElementsByTagName("message");
+            $message = '';
+            if($m->length <> 0){
+                foreach($m as $value){
+                    $message = $value->nodeValue;
+                }
+            }
+            echo "<i>- <font color=\"green\"><b>OK</b></font></i><hr>";
+            echo "Message from server: <i>".$message."</i><br>";
+        }else{
+            echo "<i>noplagiarism.org is not accessible from your server - <font color=\"read\"><b>Not OK</b></font></i><br><hr>";
+        }
+        echo "<script type=\"text/javascript\">alert(\"Test is over\");</script>";
+	flush();
 }
 
 
