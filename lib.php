@@ -227,7 +227,6 @@ function crot_event_files_done_crotpro($eventdata) {
                 }
                 
                 //Beginning of PDS
-                $plagiarismvalues = $DB->get_records_menu('plagiarism_crot_config', array('cm'=>$eventdata->cmid),'','name,value');
                 $plagiarismsettings = (array)get_config('plagiarism');
                 $name = $plagiarismsettings['crotpro_account_id']; // get account id
                 $link = $plagiarismsettings['crotpro_service_url']; // pds service link

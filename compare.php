@@ -10,7 +10,7 @@
     require_once($CFG->dirroot."/mod/assignment/lib.php");
     
     // globals
-    $plagiarismsettings = (array)get_config('plagiarism_crotpro');
+    $plagiarismsettings = (array)get_config('plagiarism');
     $allColors	= explode(",", $plagiarismsettings['crotpro_colours']);
     
     $file_id = required_param('id', PARAM_INT);   // file id
