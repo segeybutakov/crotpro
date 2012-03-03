@@ -71,6 +71,7 @@ $string['student_name']='Student name';
 $string['similar']='Similar assignments';
 $string['colours']='Colours';
 $string['global_search_settings']='<b>Global Search settings</b>';
+$string['test_global_search']='Test global search';
 //$string['global_search_threshold']='Global Search Threshold';
 $string['culture_info']='Culture info for global search';
 $string['tools']='<b>Tools</b>';
