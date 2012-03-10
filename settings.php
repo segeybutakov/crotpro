@@ -125,7 +125,7 @@ function test_global_search(){
             echo "<i>- <font color=\"green\"><b>OK</b></font></i><hr>";
             echo "Message from server: <i>".$message."</i><br>";
         }else{
-            echo "<i>noplagiarism.org is not accessible from your server - <font color=\"read\"><b>Not OK</b></font></i><br><hr>";
+            echo "<i>noplagiarism.org is not accessible from your server - <font color=\"red\"><b>FAIL</b></font></i><br><hr>";
         }
         echo "<script type=\"text/javascript\">alert(\"Test is over\");</script>";
 	flush();
