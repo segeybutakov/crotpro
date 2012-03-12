@@ -38,6 +38,68 @@
     // main loop on crot_files table - check if there are files marked for the check up 
     $link = mysql_connect("$CFG->dbhost", "$CFG->dbuser", "$CFG->dbpass") or die("Could not connect");
     mysql_select_db("$CFG->dbname") or die ("Could not select database");
+     $sql_query = "SELECT cf.* FROM {plagiarism_crotpro_files} cf where cf.status = 'queue'";
+     $files = $DB->get_records_sql($sql_query);
+    // put files that were submitted for marking into queue for check up
+    foreach ($files as $afile) {
+        //Beginning of PDS
+        $plagiarismsettings = (array)get_config('plagiarism');
+        $name = $plagiarismsettings['crotpro_account_id']; // get account id
+        $link = $plagiarismsettings['crotpro_service_url']; // pds service link
+        $fs = get_file_storage();
+        $file = $fs->get_file_by_id($afile->file_id);
+        $filename = $file->get_filename(); // get file name
+        $arrfilename = explode(".",$filename);
+        $ext = $arrfilename[count($arrfilename)-1];// get file extension
+        $contenthash = $file->get_contenthash();
+        $l1 = $contenthash[0] .$contenthash[1];
+        $l2 = $contenthash[2] .$contenthash[3];
+        $apath= $CFG->dataroot."/filedir/$l1/$l2/$contenthash";  // get file path
+        $atext = base64_encode(file_get_contents($apath));
+        $params = array(
+             "file"=>$atext,
+             "ext"=>$ext,
+             "uid"=>urlencode($name)
+            ); 
+
+        $url =$link.'/queue.php';
+        $port = 80;
+        $response = xml_post($params, $url, $port); // sends file to the web service
+        $xml = new DOMDocument();
+        $xml->loadXML($response); // get back response
+        $m = $xml->getElementsByTagName("message");
+        $message = '';
+        if($m->length <> 0){
+            foreach($m as $value){
+                $message = $value->nodeValue;
+            }
+        }
+
+        if($message == 'OK'){
+            $t = $xml->getElementsByTagName("ticket");
+            $ticket = '';
+            if($t->length <> 0){
+                foreach($t as $value){
+                    $ticket = $value->nodeValue;
+                }
+            }
+
+            $newelement = new stdclass();
+            $newelement->file_id = $file->get_id();
+            $newelement->path = $file->get_contenthash();
+            $newelement->ticket_code = $ticket; 
+            $newelement->cm = $afile->cm;    
+            $newelement->courseid = $afile->courseid;
+            //echo $newelement->file_id . ' '. $newelement->path . ' '.$newelement->ticket_code . ' ' .$newelement->cm . ' '.$newelement->courseid;
+            $result=$DB->insert_record('plagiarism_crotpro_job', $newelement);
+            $afile->status = 'sent';
+            $result=$DB->update_record('plagiarism_crotpro_files', $afile);
+            echo "\nfile ".$file->get_filename()." was sent to crot PDS!\n";
+        }else{
+            echo $message;
+        }
+    }
+
     $sql_query = "SELECT * FROM {$CFG->prefix}plagiarism_crotpro_job where result is NULL";// use api...
     $files = $DB->get_records_sql($sql_query);
     if (!empty($files)){
