@@ -219,65 +219,23 @@ function crot_event_files_done_crotpro($eventdata) {
     else {
         $modulecontext = get_context_instance(CONTEXT_MODULE, $eventdata->cmid);
         $fs = get_file_storage();
+        $status_value = array('queue','sent');
         if ($files = $fs->get_area_files($modulecontext->id, 'mod_assignment','submission', $eventdata->itemid)) {
-            // put files that were submitted for marking into queue for check up
+           // put files that were submitted for marking into queue for check up
             foreach ($files as $file) {
                 if ($file->get_filename()==='.') {
                     continue;
                 }
                 
-                //Beginning of PDS
-                $plagiarismsettings = (array)get_config('plagiarism');
-                $name = $plagiarismsettings['crotpro_account_id']; // get account id
-                $link = $plagiarismsettings['crotpro_service_url']; // pds service link
-                $filename = $file->get_filename(); // get file name
-                $arrfilename = explode(".",$filename);
-                $ext = $arrfilename[count($arrfilename)-1];// get file extension
-                $contenthash = $file->get_contenthash();
-                $l1 = $contenthash[0] .$contenthash[1];
-                $l2 = $contenthash[2] .$contenthash[3];
-                $apath= $CFG->dataroot."/filedir/$l1/$l2/$contenthash";  // get file path
-                $atext = base64_encode(file_get_contents($apath));
-                $params = array(
-                     "file"=>$atext,
-                     "ext"=>$ext,
-                     "uid"=>urlencode($name)
-                    ); 
-                
-                $url =$link.'/queue.php';
-                $port = 80;
-                $response = xml_post($params, $url, $port); // sends file to the web service
-                $xml = new DOMDocument();
-                $xml->loadXML($response); // get back response
-                $m = $xml->getElementsByTagName("message");
-                $message = '';
-                if($m->length <> 0){
-                    foreach($m as $value){
-                        $message = $value->nodeValue;
-                    }
-                }
-                    
-                if($message == 'OK'){
-                    $t = $xml->getElementsByTagName("ticket");
-                    $ticket = '';
-                    if($t->length <> 0){
-                        foreach($t as $value){
-                            $ticket = $value->nodeValue;
-                        }
-                    }
-
-                    $newelement = new stdclass();
-                    $newelement->file_id = $file->get_id();
-                    $newelement->path = $file->get_contenthash();
-                    $newelement->ticket_code = $ticket; 
-                    $newelement->cm = $eventdata->cmid;    
-                    $newelement->courseid = $eventdata->courseid;
-                    //echo $newelement->file_id . ' '. $newelement->path . ' '.$newelement->ticket_code . ' ' .$newelement->cm . ' '.$newelement->courseid;
-                    $result=$DB->insert_record('plagiarism_crotpro_job', $newelement);
-                    echo "\nfile ".$file->get_filename()." was queued up for crot pro service\n";
-                }else{
-                    echo $message;
-                }
+                $newelement = new stdclass();
+                $newelement->file_id = $file->get_id();
+                $newelement->path = $file->get_contenthash();
+                $newelement->status = $status_value[0]; 
+                $newelement->time = time();
+                $newelement->cm = $eventdata->cmid;    
+                $newelement->courseid = $eventdata->courseid;
+                $result=$DB->insert_record('plagiarism_crotpro_files', $newelement);
+                echo "\nfile ".$file->get_filename()." was queued up for crot PDS!\n";
             }
         }
         return $result;
