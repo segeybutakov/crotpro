@@ -15,7 +15,7 @@
         <KEY NAME="cm" TYPE="foreign" FIELDS="cm" REFTABLE="course_modules" REFFIELDS="id" PREVIOUS="primary"/>
       </KEYS>
     </TABLE>
-    <TABLE NAME="plagiarism_crotpro_job" COMMENT="stores all the tickets received from the PDS service" PREVIOUS="plagiarism_crotpro_config">
+    <TABLE NAME="plagiarism_crotpro_job" COMMENT="stores all the tickets received from the PDS service" PREVIOUS="plagiarism_crotpro_config" NEXT="plagiarism_crotpro_files">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="file_id"/>
         <FIELD NAME="file_id" TYPE="int" LENGTH="20" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="id" NEXT="path"/>
@@ -23,6 +23,20 @@
         <FIELD NAME="ticket_code" TYPE="text" LENGTH="medium" NOTNULL="true" SEQUENCE="false" PREVIOUS="path" NEXT="result"/>
         <FIELD NAME="result" TYPE="text" LENGTH="big" NOTNULL="false" SEQUENCE="false" PREVIOUS="ticket_code" NEXT="cm"/>
         <FIELD NAME="cm" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="result" NEXT="courseid"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="cm"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="plagiarism_crotpro_files" COMMENT="stores files for plagiarism check up" PREVIOUS="plagiarism_crotpro_job">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="file_id"/>
+        <FIELD NAME="file_id" TYPE="int" LENGTH="20" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="id" NEXT="path"/>
+        <FIELD NAME="path" TYPE="text" LENGTH="medium" NOTNULL="true" SEQUENCE="false" PREVIOUS="file_id" NEXT="status"/>
+        <FIELD NAME="status" TYPE="text" LENGTH="small" NOTNULL="true" SEQUENCE="false" PREVIOUS="path" NEXT="time"/>
+        <FIELD NAME="time" TYPE="int" LENGTH="20" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="status" NEXT="cm"/>
+        <FIELD NAME="cm" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="time" NEXT="courseid"/>
         <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="cm"/>
       </FIELDS>
       <KEYS>
