@@ -92,6 +92,7 @@ function clean_data(){
     // cleaning up all the tables for Crot Pro'
     $DB->delete_records("plagiarism_crotpro_config");
     $DB->delete_records("plagiarism_crotpro_job");
+    $DB->delete_records("plagiarism_crotpro_files");
     notify(get_string('tables_cleaned_up','plagiarism_crotpro'), 'notifysuccess');
 }
 
