@@ -12,7 +12,7 @@
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);	// allow redirects
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER,1); // return into a variable
 		curl_setopt($ch, CURLOPT_PORT, $port);			//Set the port number
-		curl_setopt($ch, CURLOPT_TIMEOUT, 15); // times out after 15s
+		curl_setopt($ch, CURLOPT_TIMEOUT, 600); // times out after 10 minutes
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_xml); // add POST fields
 		curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
 
