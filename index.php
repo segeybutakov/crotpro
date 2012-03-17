@@ -98,6 +98,6 @@
     $namelink = "<a href=\"../../user/view.php?id=$user_id\">".fullname($user)."</a>";
     $table->data[] = array ($namelink, $table2);
     echo html_writer::table($table);
-    echo get_string('bing_search','plagiarism_crot')." <a href =\"http://www.bing.com\" target=\"_new\"><img src= \"http://www.bing.com/siteowner/s/siteowner/Logo_63x23_Dark.png\"> </a>";
+    echo get_string('bing_search','plagiarism_crotpro')." <a href =\"http://www.bing.com\" target=\"_new\"><img src= \"http://www.bing.com/siteowner/s/siteowner/Logo_63x23_Dark.png\"> </a>";
     echo $OUTPUT->footer($course);
 ?>

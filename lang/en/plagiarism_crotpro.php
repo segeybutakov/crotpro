@@ -102,7 +102,7 @@ $string['no_plagiarism'] = 'no plagiarism have been detected';
 $string['name_unknown'] = 'name is unknown';
 $string['webdoc'] = 'Web document: <br> Source:';
 $string['webdocument'] = 'Web document';
-$string['bing_search'] = '<br>Global plagiarism detection is supported by Bing search engine';
+$string['bing_search'] = '<br>Crot Pro is supported by Bing search engine';
 $string['assignments_not_displayed'] = 'Assignments with similarity score less than {$a}% are not displayed';
 
 $string['FILE_FORMAT_NOT_ALLOWED'] = "Sorry but this file format is not allowed for upload";
