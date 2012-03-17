@@ -57,7 +57,7 @@ $string['cleantables_help'] = '删除作业集以外的所有Crot数据，为后
 $string['newexplain'] = '关于此插件的更多信息请看：';
 $string['crot'] = 'Crot反抄袭';
 $string['crot_help'] = 'Crot是一个支持doc、docx、pdf、odt、rtf、txt、cpp和java文件的反抄袭工具。';
-$string['crotexplain'] = 'Crot是一个反抄袭工具：它能比较同一机构的学生之间的作业拷贝，也能比较来自Internet的拷贝。它使用文档指纹技术处理内部文档比较，使用MSN Live搜索引擎处理全局搜索。<br /><br />更多信息在<a href="http://www.siberiasoft.info">www.siberiasoft.info</a>';
+$string['crotexplain'] = 'Crot是一个反抄袭工具：它能比较同一机构的学生之间的作业拷贝，也能比较来自Internet的拷贝。它使用文档指纹技术处理内部文档比较，使用MSN Live搜索引擎处理全局搜索。<br /><br />更多信息在<a href="http://www.crotsoftware.info">www.crotsoftware.info</a>';
 
 $string['usecrot'] ='启用Crot';
 $string['savedconfigsuccess'] = '抄袭设置已保存';

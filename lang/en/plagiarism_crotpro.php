@@ -41,16 +41,16 @@ $string['account_id_help'] = 'This is your account id for Crot Pro.';
 $string['service_url'] = 'Link to Cro Pro Service';
 $string['service_url_help'] = 'This is the link to the PDS service for Crot Pro';
 $string['cleantables'] = 'Clean tables';
-$string['cleantables_help'] = 'It removes all Crot data except assignments set for check up! Recalculation of fingerprints may cause heavy load on the server.';
+$string['cleantables_help'] = 'It removes all Crotpro data except assignments set for check up! Please note that all teh checkup results will be removed from the database. The assignments will NOT be resubmitted for the check up again';
 
 $string['newexplain'] = 'For more information on this plugin see:';
 $string['crotpro'] = 'Crot Pro';
 $string['crotpro_help'] = 'Crot Pro is an anti-plagiarism tool which supports doc, docx, pptx, ppt, pdf, odt, rtf, txt, cpp and java files.';
-$string['crotexplain'] = 'Crot Pro is an anti-plagiarism tool: it compares assignments copied from the Internet. It uses the MSN Live search engine to perform global search.<br/><br/>More information can be found at <a href="http://www.siberiasoft.info">www.siberiasoft.info</a>';
+$string['crotexplain'] = 'Crot Pro is a connector to plagiarism detection service. <br/><br/>More information can be found at <a href="http://www.crotsoftware.com">www.crotsoftware.com</a>';
 
 $string['default_threshold']='Default Threshold';
 $string['usecrot'] ='Enable Crot Pro';
-$string['savedconfigsuccess'] = 'Plagiarism Settings Saved';
+$string['savedconfigsuccess'] = 'Crot Pro Settings have been saved';
 $string['compareinternet'] = 'Compare submitted files with Internet';
 
 //strings copied from block - probably need reworking for new plugin
@@ -59,7 +59,7 @@ $string['course_summary'] = 'Course Summary';
 $string['Topics'] = 'Topics';
 $string['report'] = 'Report';
 //$string['settings'] = 'Settings';
-$string['have_to_be_a_teacher'] = '<c>The block is under construction. <br> You have to be a teacher to see its content';
+$string['have_to_be_a_teacher'] = 'You have to be a teacher to see this content';
 $string['assignments']='Assignments';
 $string['global']='Global';
 $string['settings']='Settings';
@@ -104,15 +104,6 @@ $string['webdoc'] = 'Web document: <br> Source:';
 $string['webdocument'] = 'Web document';
 $string['bing_search'] = '<br>Global plagiarism detection is supported by Bing search engine';
 $string['assignments_not_displayed'] = 'Assignments with similarity score less than {$a}% are not displayed';
-
-$string['download_inwicast_message'] = '<p>INWICAST Publisher is a very simple and powerful tool designed to record and publish podcasts, videocasts, screencasts and slidecasts for the web and for mobile devices. INWICAST Publisher allows you to:</p><p>
-
-    * record podcasts, videocasts, screencasts and Powerpoint slidescasts<br/>
-    * convert recorded medias to various formats: flv, wmv, mp4, mp3, etc.<br/>
-    * create multimedia content for mobile players like iPod or Zune<br/>
-    * create and manage multimedia playlists<br/>
-    * easily publish your podcasts on your Moodle platform<br/>
-</p>';
 
 $string['FILE_FORMAT_NOT_ALLOWED'] = "Sorry but this file format is not allowed for upload";
 
