@@ -1,8 +1,49 @@
 README
 --------
 
-Crot Pro Plagiarism plugin for Moodle 2.0
+Crot Pro Plagiarism plugin for Moodle 2.x
 
 1. REQUIRED SOFTWARE AND SETTINGS
 
-1.1 
+1.1 PACKAGES (apart form those ones that are required by Moodle): 
+  php_soap is required 
+
+1.2 SETTINGS in php ini 
+  allow_url_fopen = On
+
+
+INSTALLATION
+1. Untar the crotpro folder into plagiarism/crotpro.
+2. Login to Moodle as an admin and click on notifications. Click on Upgrade button at the bottom of the page. Moodle will setup the tables  required for crotPro.
+3. Go to Advanced features in the admin's menu and check "Enable plagiarism plugins" option. Save changes. 
+4. Open Plugins/Plagiarism prevention/Crotpro link from the admin's menu.
+5. Check "Enable Crotpro"
+6. Put the following information in the appropriate fields:
+    - account id: your account id. If you do not have one you may get free account id by clicking on the link next to the account id attribute.
+    - Service URL: put the URL provided by Crot Software or use the following URL: beta.noplariarism.org
+7. Other settings you may change later based on your experience with the plug-in. 
+	The complete description of these settings is as follows:
+		- Student disclosure: This text will appear on the assignment submission page when student work will be uploaded to the system. Please note that Crot Pro does not compare submitted assignments between each other. The submitted assignment will be deleted from Crot Pro database as soon as your system will retrieve the checkup results from Crot Pro.
+		- Colors are used for highlighting of similar text fragments in the side by side comparison of documents. 
+   		- Culture info for global search: Culture information is used to improve search results.
+8. Select Test global search to run a quick test of global search. If it works you will see results of test search query on the next step. Please note that depending on your location you may get FAIL result if you test global connectivity first time. 
+9. Click Save Changes button
+10. IMPORTANT: You need to setup CRON running on your server to have CrotPro running. Please refer to the implementation section below. 
+
+IMPLEMENTATION
+1. Login as a teacher to Moodle.
+2. Go to the course, then to the assignment that you want to be processed by the antiplagiarism plugin. At the moment Crotpro works with the following types of assignments:
+	- Advanced uploading of files
+3. Click Assignment administration/Edit settings link.
+4. In the Crotpro block enable CrotPro checkups.
+5. Save settings and wait for the cron scheduler to process the assignments submit the files for the checkup and receive results.
+   IMPORTANT: setting cron on Moodle is covered in Moodle doc: http://docs.moodle.org/20/en/Cron
+	EVEN MORE IMPORTANT: It would be better to setup cron running php command from the command prompt, NOT using wget command as it may cause cron timeout.
+   If you are not sure how cron works on your server please ask your system administrator about it.
+   Please note that processing may take significant time. 
+    When you run cron first time it sends the files for the checkup. When you run cron second time it checks with Croppro server if the results are ready. 
+    Please allow up to the 24 hours for the Crot Pro BETA to deliver you the results. 
+6. Go to the assignment, click "View submitted assignments" link and you will see the maximum similarity score for submitted files.
+7. Open the link with similarity score and compare documents.
+
+PLEASE Send your comments to (moodle /at/ crotsoftware /dot/ com).
