@@ -7,11 +7,11 @@
     }
     // overrides php limits
     $maxtimelimit = ini_get('max_execution_time');
-    ini_set('max_execution_time', 18000);
+    ini_set('max_execution_time', 600);
     $maxmemoryamount = ini_get('memory_limit');
     // set large amount of memory for the processing
     // fingeprint calcualtion mey be very memory consuming especially for large documents from the internet
-    ini_set('memory_limit', '1024M');
+    ini_set('memory_limit', '256M');
 
     // store current time for perf measurements
     $mtime = microtime();
@@ -99,7 +99,7 @@
             echo $message;
         }
     }
-
+    // todo: change this query to api call
     $sql_query = "SELECT * FROM {$CFG->prefix}plagiarism_crotpro_job where result is NULL";// use api...
     $files = $DB->get_records_sql($sql_query);
     if (!empty($files)){

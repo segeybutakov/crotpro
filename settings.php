@@ -76,11 +76,12 @@
             if($field == 'testglobal' && $value == true) {
                 test_global_search();
             }
-            
+/*   
+ * todo remove this registration as it will be done automatically         
             if($field == 'registration' && $value == true) {
                 echo $OUTPUT->box("<b><a href=\"https://spreadsheets.google.com/viewform?formkey=dFRPVTRiSkNzSzI1cTVManUwNWVKZXc6MQ\" target=\"_new\">Please follow this link to register!</a></b>");
             }
-            
+*/            
         }
         notify(get_string('savedconfigsuccess', 'plagiarism_crotpro'), 'notifysuccess');
     }
