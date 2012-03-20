@@ -48,6 +48,7 @@ class plagiarism_setup_form extends moodleform {
         $mform->addElement('checkbox', 'delall', get_string('cleantables', 'plagiarism_crotpro'));
         $mform->addHelpButton('delall', 'cleantables', 'plagiarism_crotpro');
         $mform->addElement('checkbox', 'testglobal', get_string('test_global_search', 'plagiarism_crotpro'));
+        $mform->addElement('checkbox', 'createaccount', get_string('createaccount', 'plagiarism_crotpro'));
         $mform->addElement('checkbox', 'registration', get_string('registration', 'plagiarism_crotpro'));
 
         $this->add_action_buttons(true);
