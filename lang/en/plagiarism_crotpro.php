@@ -76,6 +76,7 @@ $string['test_global_search']='Test global search';
 $string['culture_info']='Culture info for global search';
 $string['tools']='<b>Tools</b>';
 $string['registration'] = '<b>Registration</b>';
+$string['createaccount']='<b>CrotPro Free Account</b>';
 
 $string['no_similarities'] = 'no similarities';
 $string['incorrect_courseid'] = 'Course ID is incorrect';
