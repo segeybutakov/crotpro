@@ -108,13 +108,7 @@ function setup_crotpro_free_account(){
     require_once($CFG->dirroot. '/plagiarism/crotpro/post_xml.php');
     $plagiarismsettings = (array)get_config('plagiarism');
     $service_url = $plagiarismsettings['crotpro_service_url']; // pds service link
-    $ip = trim($_SERVER['REMOTE_ADDR']);
-    $host = trim($_SERVER['SERVER_NAME']);
-    $account_id = strtoupper("FREE".substr(md5($ip), 0, 14).substr(md5($host), 0, 14));
-    $params = array(
-        "uid"=>$account_id,
-        "ip"=>$ip
-    );
+    $params = array();
     $port = 80;
     $url = $service_url.'/create_account.php';
     echo "Setting up CrotPro free account<br><hr>";
