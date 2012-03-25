@@ -36,7 +36,13 @@ $string['defaultthreshold'] = 'Default Threshold';
 $string['defaultthreshold_help'] = 'Assignments with similarity score less than threshold value are not displayed on Anti-Plagiarism - Assignments page.';
 $string['globalsearchthreshold'] = 'Global search threshold';
 $string['globalsearchthreshold_help'] = 'Reserved for future development. Recommended value is 90.';
-$string['account_id'] = 'Account ID';
+$string['account_id'] = 'Account ID<script language="JavaScript">function win1() {
+    window.open("registration.php","Registraion form","menubar=no,width=460,height=360,toolbar=no");
+    } </script><a href="javascript:win1()" onMouseOver="self.status=\'Open A Window\'; return true;"><b>Free Account ID</b></a>';
+/*'Account ID<script language="JavaScript">function win1() {
+    window.open("registration.php","Registraion form","menubar=no,width=460,height=360,toolbar=no");
+    } </script> <br/><br/> <a href="javascript:win1()" onMouseOver="self.status=\'Open A Window\'; return true;">get <b>FREE</b> ID</a><br/>';*/
+
 $string['account_id_help'] = 'This is your account id for Crot Pro.';
 $string['service_url'] = 'Link to Cro Pro Service';
 $string['service_url_help'] = 'This is the link to the PDS service for Crot Pro';
@@ -46,7 +52,11 @@ $string['cleantables_help'] = 'It removes all Crotpro data except assignments se
 $string['newexplain'] = 'For more information on this plugin see:';
 $string['crotpro'] = 'Crot Pro';
 $string['crotpro_help'] = 'Crot Pro is an anti-plagiarism tool which supports doc, docx, pptx, ppt, pdf, odt, rtf, txt, cpp and java files.';
-$string['crotexplain'] = 'Crot Pro is a connector to plagiarism detection service. <br/><br/>More information can be found at <a href="http://www.crotsoftware.com">www.crotsoftware.com</a>';
+$string['crotexplain'] = 'Crot Pro is a connector to plagiarism detection  service. <br/><br/>More information can be found at <a href="http://www.crotsoftware.com">www.crotsoftware.com</a> <br/>';
+
+$string['crotpro_reg'] = '<script language="JavaScript">function win1() {
+    window.open("registration.php","Registraion form","menubar=no,width=460,height=360,toolbar=no");
+    } </script><a href="javascript:win1()" onMouseOver="self.status=\'Open A Window\'; return true;"><b>FREE registration</b></a>';
 
 $string['default_threshold']='Default Threshold';
 $string['usecrot'] ='Enable Crot Pro';
@@ -107,4 +117,3 @@ $string['bing_search'] = '<br>Crot Pro is supported by Bing search engine';
 $string['assignments_not_displayed'] = 'Assignments with similarity score less than {$a}% are not displayed';
 
 $string['FILE_FORMAT_NOT_ALLOWED'] = "Sorry but this file format is not allowed for upload";
-
