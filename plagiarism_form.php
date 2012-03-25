@@ -35,20 +35,22 @@ class plagiarism_setup_form extends moodleform {
         $mform->setDefault('crotpro_culture_info', 'en-us');
         
         // Web Service Configuration
-        $mform->addElement('text', 'crotpro_account_id', 'Account ID');
-        $mform->setDefault('crotpro_account_id', '');
-        $mform->addRule('crotpro_account_id', null, 'required', null, 'client');
-        
-        $mform->addElement('text', 'crotpro_service_url', 'Service URL');
+        $mform->addElement('text', 'crotpro_service_url', get_string('service_url', 'plagiarism_crotpro'));
         $mform->setDefault('crotpro_service_url', '');
         $mform->addRule('crotpro_service_url', null, 'required', null, 'client');        
          
+        $mform->addElement('text', 'crotpro_account_id', get_string('account_id', 'plagiarism_crotpro'));
+        $mform->setDefault('crotpro_account_id', '');
+        $mform->addRule('crotpro_account_id', null, 'required', null, 'client');
+        $mform->addElement('html', get_string('crotpro_reg', 'plagiarism_crotpro'));
+        
         // Tools
         $mform->addElement('html', get_string('tools', 'plagiarism_crotpro'));
         $mform->addElement('checkbox', 'delall', get_string('cleantables', 'plagiarism_crotpro'));
         $mform->addHelpButton('delall', 'cleantables', 'plagiarism_crotpro');
         $mform->addElement('checkbox', 'testglobal', get_string('test_global_search', 'plagiarism_crotpro'));
-        $mform->addElement('checkbox', 'registration', get_string('registration', 'plagiarism_crotpro'));
+//        $mform->addElement('checkbox', 'createaccount', get_string('createaccount', 'plagiarism_crotpro'));
+//        $mform->addElement('checkbox', 'registration', get_string('registration', 'plagiarism_crotpro'));
 
         $this->add_action_buttons(true);
     }
