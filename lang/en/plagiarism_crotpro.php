@@ -38,7 +38,7 @@ $string['globalsearchthreshold'] = 'Global search threshold';
 $string['globalsearchthreshold_help'] = 'Reserved for future development. Recommended value is 90.';
 $string['account_id'] = 'Account ID<script language="JavaScript">function win1() {
     window.open("registration.php","Registraion form","menubar=no,width=460,height=360,toolbar=no");
-    } </script><a href="javascript:win1()" onMouseOver="self.status=\'Open A Window\'; return true;"><b>Free Account ID</b></a>';
+    } </script><a href="javascript:win1()" onMouseOver="self.status=\'Open A Window\'; return true;"><br/><b>Free Account ID</b></a>';
 /*'Account ID<script language="JavaScript">function win1() {
     window.open("registration.php","Registraion form","menubar=no,width=460,height=360,toolbar=no");
     } </script> <br/><br/> <a href="javascript:win1()" onMouseOver="self.status=\'Open A Window\'; return true;">get <b>FREE</b> ID</a><br/>';*/
