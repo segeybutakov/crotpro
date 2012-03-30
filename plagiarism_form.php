@@ -42,7 +42,6 @@ class plagiarism_setup_form extends moodleform {
         $mform->addElement('text', 'crotpro_account_id', get_string('account_id', 'plagiarism_crotpro'));
         $mform->setDefault('crotpro_account_id', '');
         $mform->addRule('crotpro_account_id', null, 'required', null, 'client');
-        $mform->addElement('html', get_string('crotpro_reg', 'plagiarism_crotpro'));
         
         // Tools
         $mform->addElement('html', get_string('tools', 'plagiarism_crotpro'));
