@@ -66,8 +66,13 @@
     // get content of the document
     $textA = stripslashes($xml->pdrml->suspicious_document[0]->text);
     $textB = stripslashes($source_document->text);
+    $color_size = count($allColors);
+    $color_counter = 0;
     // TODO create separate function for coloring ?
     foreach($xml->pdrml->findings->feature as $feature){
+       if($color_size == $color_counter){
+           $color_counter = 0;
+       }
        if($feature->source_document_id == $source_id){ 
           $source_document_offset = trim($feature->source_document_offset);
           $source_document_length = trim ($feature->source_document_length);
@@ -75,8 +80,9 @@
           $suspicious_document_length = trim ($feature->suspicious_document_length);
           $endPosA = $suspicious_document_offset+$suspicious_document_length;
           $endPosB = $source_document_offset+$source_document_length;
-          $textA = colorer($textA, $suspicious_document_offset, $endPosA, $allColors[0]);
-          $textB = colorer($textB, $source_document_offset ,$endPosB , $allColors[0]);
+          $textA = colorer($textA, $suspicious_document_offset, $endPosA, $allColors[$color_counter]);
+          $textB = colorer($textB, $source_document_offset ,$endPosB , $allColors[$color_counter]);
+          $color_counter = $color_counter + 1;
        }
     }
     
