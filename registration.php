@@ -1,76 +1,110 @@
 <?php
-    require_once(dirname(dirname(__FILE__)) . '/../config.php');
-    if(isset($_POST["Register"])){
-        $domain = $_POST["domain"];
-        $ip = $_POST["ip"];
-        $phone = $_POST["phone"];
-        $company = $_POST["company"];
-        $email = $_POST["email"];
-        if(!(empty($domain) || empty($ip) ||empty($phone) ||empty($company) ||empty($email))){
-            if(eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $email)){
-                if(true){
-                    setup_crotpro_free_account($phone, $company, $email);
-                }else{
-                    echo "<hr><font color=\"red\"><b>Phone number is required.<br>Please enter a phone number with the format (xxx)xxx-xxxx eg +1(202)894-9404 or (202)889-9094</b></font></i><hr>";
-                }
-            }else{
-                echo "<hr><font color=\"red\"><b>Invalid Email Address</b></font></i><hr>";
-            }
-        }else{
-           echo "<hr><font color=\"red\"><b>Please fill all the boxes</b></font></i><hr>";
-        }
+ob_start();
+require_once(dirname(dirname(__FILE__)) . '/../config.php');
+
+if(isset($_POST['submitted'])){
+    $domain = $_POST["domain"];
+    $ip = $_POST["ip"];
+    $phone = $_POST["phone"];
+    $company = $_POST["company"];
+    $email = $_POST["email"];
+    $error_message = setup_crotpro_free_account($phone, $company, $email, $domain);
+    if(empty($error_message)){
+        redirectToURL('thank-you.html');
+        exit;
     }
-    echo "REGISTRATION Warning";
-    echo "<br/>the following information will be sent to CrotSoftware for registration";
-    echo "<li>Your domain name:<b>";
-    require_once("../../config.php");
-    global $CFG;
-    echo $CFG->wwwroot;
-    echo "</b>";
-    echo "<li>Your server IP address: <b>"; echo $_SERVER['SERVER_ADDR']; 
-    echo "</b><br/>";
-    echo "This information is required to issue you free ID to get connected to the server. Please click on the button below to proceed<br/>";
-    "OPTIONAL Information";
+}
 ?>
 
-    <form method="post" action="registration.php" name="reg" id="reg">
-      <table style="text-align: left; width: 624px; height: 179px;" border="1" cellpadding="2" cellspacing="2">
-           <tbody>
-            <tr>
-              <td style="width: 185px;">School / Company name&nbsp; </td>
-              <td style="width: 289px;"><textarea cols="40" rows="1" name="company"><?php if(!empty($company)) echo $company;?></textarea></td>
-           </tr>
-           <tr>
-               <td style="width: 185px;">Phone</td>
-               <td style="width: 289px;"><textarea cols="40" rows="1" name="phone"><?php if(!empty($phone)) echo $phone;?></textarea></td>
-           </tr>
-           <tr>
-            <td style="width: 185px;">E-mail&nbsp;</td>
-            <td style="width: 289px;"><textarea cols="40" rows="1" name="email"><?php if(!empty($email)) echo $email;?></textarea></td>
-           </tr>
-          </tbody>
-      </table>
-      <input name="domain" value="<?php  echo $CFG->wwwroot;?>" type="hidden"><br>
-        <input name="ip" value="<?php echo $_SERVER['SERVER_ADDR'];?>" type="hidden"><br>&nbsp;
-        <button name="Register"><br>Register </button><br> <br>
+<?php
+function redirectToURL($url){?>
+<script type="text/javascript">
+    window.location = "<?=$url?>"
+</script>
+<?}
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+    <title>CrotPro Registration</title>
+    <script type='text/javascript' src='scripts/gen_validatorv31.js'></script>
+    <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css" />
+<body>
+
+<!-- Form Code Start -->
+<div id='fg_membersite'>
+    
+    <form id='register' action='<?php echo $_SERVER['PHP_SELF'];?>' method='post' accept-charset='UTF-8'>
+        <fieldset>
+            <legend>Register</legend>
+
+            <input type='hidden' name='submitted' id='submitted' value='1'/>
+
+            <div class='short_explanation'>* required fields</div>
+            <div class='short_explanation'>>> This information is required to issue you free ID to get connected to the server.</div>            
+            <input type='hidden' name='domain' id='domain' value='<?php echo $CFG->wwwroot; ?>' maxlength="50"/>
+            <input type='hidden' name='ip' id='ip' value='<?php echo $_SERVER['SERVER_ADDR']; ?>' maxlength="50" />
+            <div><span class='error'><?php if(!empty($error_message)) echo $error_message; ?></span></div>
+            <div class='container'>
+                <label for='company' >School / Company name*: </label><br/>
+                <input type='text' name='company' id='company' value='<?php if(!empty($company)) echo $company;?>' maxlength="200" /><br/>
+                <span id='register_company_errorloc' class='error'></span>
+            </div>
+            <div class='container'>
+                <label for='phone' >Phone*:</label><br/>
+                <input type='text' name='phone' id='phone' value='<?php if(!empty($phone)) echo $phone;?>' maxlength="50" /><br/>
+                <span id='register_phone_errorloc' class='error'></span>
+            </div>
+            <div class='container'>
+                <label for='email' >E-mail*:</label><br/>
+                <input type='text' name='email' id='email' value='<?php if(!empty($email)) echo $email;?>' maxlength="50" /><br/>
+                <span id='register_email_errorloc' class='error'></span>
+            </div>
+
+            <div class='container'>
+                <input type='submit' name='Submit' value='Submit' />
+            </div>
+
+        </fieldset>
     </form>
-<br/>
+<!-- client-side Form Validations:
+Uses the excellent form validation script from JavaScript-coder.com-->
+
+<script type='text/javascript'>
+// <![CDATA[
+    
+    var frmvalidator  = new Validator("register");
+    frmvalidator.EnableOnPageErrorDisplay();
+    frmvalidator.EnableMsgsTogether();
+    frmvalidator.addValidation("company","req","Please provide your school or company name");
+
+    frmvalidator.addValidation("email","req","Please provide your email address");
+
+    frmvalidator.addValidation("email","email","Please provide a valid email address");
+
+    frmvalidator.addValidation("phone","req","Please provide your phone number");
+
+// ]]>
+</script>
 
 <?php 
-    function setup_crotpro_free_account($phone, $company, $email){
+    function setup_crotpro_free_account($phone, $company, $email, $domain){
         global $CFG;
         global $DB;
+        $error_message = '';
         require_once($CFG->dirroot. '/plagiarism/crotpro/post_xml.php');
         $plagiarismsettings = (array)get_config('plagiarism');
         $service_url = $plagiarismsettings['crotpro_service_url']; // pds service link
         $params = array(
+            "domain"=> $domain,
             "ph" => $phone,
             "com" => $company,
             "em" => $email
         );
         $port = 80;
         $url = $service_url.'/create_account.php';
-        echo "Setting up CrotPro free account<br><hr>";
         $response = xml_post($params, $url, $port); // sends file to the web service
         $xml = new DOMDocument();
         if($xml->loadXML($response)){ // get back response
@@ -98,10 +132,13 @@
                         }               
                    }
                 }  
-           }
-           echo "<i>- <font color=\"green\"><b>OK</b></font></i><hr>";
-           echo "Message from server: <font color=\"green\"><i>".$message."</i></font><br/><br/>";
+           }else{
+              $error_message =  "<font color=\"green\"><i>".$message."</i></font>"; 
+           } 
         }
         flush();
-    }
+        return $error_message;
+    }    
 ?>
+</body>
+</html>
