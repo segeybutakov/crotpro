@@ -1,6 +1,7 @@
 <?php
 /**
- * @author Tosin Komolafe
+ * @author    Tosin Komolafe, Sergey Butakov, Svetlana Kim
+ * @copyright CrotSoftware 2012
  */
 require_once($CFG->dirroot.'/lib/formslib.php');
 
@@ -36,7 +37,7 @@ class plagiarism_setup_form extends moodleform {
         
         // Web Service Configuration
         $mform->addElement('text', 'crotpro_service_url', get_string('service_url', 'plagiarism_crotpro'));
-        $mform->setDefault('crotpro_service_url', '');
+        $mform->setDefault('crotpro_service_url', 'http://220.90.197.31/~tosin');
         $mform->addRule('crotpro_service_url', null, 'required', null, 'client');        
          
         $mform->addElement('text', 'crotpro_account_id', get_string('account_id', 'plagiarism_crotpro'));
