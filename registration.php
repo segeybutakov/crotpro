@@ -1,6 +1,15 @@
 <?php
+/**
+ * @author Tosin Komolafe
+ * @copyright CrotSoftware 2012
+ */
+
+
 ob_start();
 require_once(dirname(dirname(__FILE__)) . '/../config.php');
+if(isset($_GET['url'])){
+    $_SESSION['url'] = $_GET['url'];
+}
 
 if(isset($_POST['submitted'])){
     $domain = $_POST["domain"];
@@ -8,9 +17,10 @@ if(isset($_POST['submitted'])){
     $phone = $_POST["phone"];
     $company = $_POST["company"];
     $email = $_POST["email"];
-    $error_message = setup_crotpro_free_account($phone, $company, $email, $domain);
-    if(empty($error_message)){
-        redirectToURL('thank-you.html');
+    $url = $_POST["url"];
+    $message = setup_crotpro_free_account($phone, $company, $email, $domain, $url);
+    if(empty($message[0])){
+        redirectToURL("thank-you.php?uid=$message[1]");
         exit;
     }
 }
@@ -44,7 +54,8 @@ if(isset($_POST['submitted'])){
             <div class='short_explanation'>>> This information is required to issue you free ID to get connected to the server.</div>            
             <input type='hidden' name='domain' id='domain' value='<?php echo $CFG->wwwroot; ?>' maxlength="50"/>
             <input type='hidden' name='ip' id='ip' value='<?php echo $_SERVER['SERVER_ADDR']; ?>' maxlength="50" />
-            <div><span class='error'><?php if(!empty($error_message)) echo $error_message; ?></span></div>
+            <input type='hidden' name='url' id='url' value='<?php echo $_SESSION['url']; ?>' maxlength="50" />
+            <div><span class='error'><?php if(!empty($message[0])) echo $message[0]; ?></span></div>
             <div class='container'>
                 <label for='company' >School / Company name*: </label><br/>
                 <input type='text' name='company' id='company' value='<?php if(!empty($company)) echo $company;?>' maxlength="200" /><br/>
@@ -88,13 +99,13 @@ Uses the excellent form validation script from JavaScript-coder.com-->
 </script>
 
 <?php 
-    function setup_crotpro_free_account($phone, $company, $email, $domain){
+    function setup_crotpro_free_account($phone, $company, $email, $domain, $url){
         global $CFG;
         global $DB;
         $error_message = '';
+        $uid = '';
         require_once($CFG->dirroot. '/plagiarism/crotpro/post_xml.php');
-        $plagiarismsettings = (array)get_config('plagiarism');
-        $service_url = $plagiarismsettings['crotpro_service_url']; // pds service link
+        $service_url = $url; // pds service link
         $params = array(
             "domain"=> $domain,
             "ph" => $phone,
@@ -116,7 +127,6 @@ Uses the excellent form validation script from JavaScript-coder.com-->
 
            if($message == 'OK'){
                 $t = $xml->getElementsByTagName("uid");
-                $uid = '';
                 if($t->length <> 0){
                     foreach($t as $value){
                         $uid = $value->nodeValue;
@@ -135,7 +145,7 @@ Uses the excellent form validation script from JavaScript-coder.com-->
            } 
         }
         flush();
-        return $error_message;
+        return array($error_message, $uid);
     }    
 ?>
 </body>
