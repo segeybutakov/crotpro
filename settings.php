@@ -18,7 +18,7 @@
  * plagiarism.php - allows the admin to configure plagiarism stuff
  *
  * @package   plagiarism_crotpro
- * @author    Tosin Komolafe
+ * @author    Tosin Komolafe, Sergey Butakov, Svetlana Kim
  * @copyright 1999 onwards Martin Dougiamas  {@link http://moodle.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -110,7 +110,7 @@ function test_global_search(){
 	// testing global connectivity
 	echo "Testing global connectivity & xml parsers...<br>";
         // access http://pds.noplagiarism.org/connect.xml
-        $service_url = "http://pds.noplagiarism.org/"; //remove later
+        //$service_url = "http://pds.noplagiarism.org/"; //remove later
         $url =$service_url.'/connect.xml';
         $port = 80;
         $response = xml_post($params, $url, $port); // sends file to the web service
