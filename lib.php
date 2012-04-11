@@ -22,7 +22,7 @@
  * @package    plagiarism_crotpro
  * @subpackage plagiarism
  * @author     Tosin Komolafe
- * @copyright  2012 Tosin Komolafe
+ * @copyright  CrotSoftware 2012
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
