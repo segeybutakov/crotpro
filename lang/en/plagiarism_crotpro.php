@@ -17,8 +17,9 @@
 /**
  *
  * @package   plagiarism_crotpro
- * @copyright 2012 Tosin Komolafe
+ * @author    Tosin Komolafe, Sergey Butakov, Svetlana Kim
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright CrotSoftware 2012
  */
 
 $string['pluginname'] = 'Crot Pro Plagiarism Checker';
@@ -37,7 +38,8 @@ $string['defaultthreshold_help'] = 'Assignments with similarity score less than 
 $string['globalsearchthreshold'] = 'Global search threshold';
 $string['globalsearchthreshold_help'] = 'Reserved for future development. Recommended value is 90.';
 $string['account_id'] = 'Account ID<script language="JavaScript">function win1() {
-    window.open("registration.php","Registraion form","menubar=no,width=460,height=360,toolbar=no");
+    var url = "registration.php?url="+document.getElementById("id_crotpro_service_url").value;
+    window.open(url,"Registration form","menubar=no,width=400,height=360,toolbar=no");
     } </script><a href="javascript:win1()" onMouseOver="self.status=\'Open A Window\'; return true;"><br/><b>Free Account ID</b></a>';
 /*'Account ID<script language="JavaScript">function win1() {
     window.open("registration.php","Registraion form","menubar=no,width=460,height=360,toolbar=no");
