@@ -1,6 +1,8 @@
+
 <?php
         /**
          * @author Tosin Komolafe
+         * @copyright CrotSoftware 2012
          */
 
 	// open a http channel, transmit data and return received buffer
