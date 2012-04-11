@@ -1,7 +1,8 @@
 <?php
 /**
  *
- * @author Tosin Komolafe
+ * @author    Tosin Komolafe, Sergey Butakov, Svetlana Kim
+ * @copyright CrotSoftware 2012
  * 
  */
 
