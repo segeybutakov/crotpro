@@ -1,6 +1,7 @@
 <?php
 /**
- * @author Tosin Komolafe
+ * @author    Tosin Komolafe, Sergey Butakov, Svetlana Kim
+ * @copyright CrotSoftware 2012
  */
     if (!defined('MOODLE_INTERNAL')) {
         die('Direct access to this script is forbidden.');    ///  It must be included from a Moodle page
