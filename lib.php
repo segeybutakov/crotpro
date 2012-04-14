@@ -83,6 +83,9 @@ class plagiarism_plugin_crotpro extends plagiarism_plugin {
                 $max = 0;
                 if(!empty ($percents)){
                     $max = round(max($percents),2);
+                    if($max > 100){
+                        $max = 100.00;
+                    }
                 }
               $output .= "<br><b> <a href=\"../../plagiarism/crotpro/index.php?id=$file_id&cid=$cid&user_id=$userid\">pds: ".$max."%</a></b>";
             }else{
