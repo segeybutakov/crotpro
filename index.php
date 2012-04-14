@@ -84,7 +84,10 @@
                       $sus_document_length = $sus_document_length + trim ($feature->suspicious_document_length);
                    }
                 }
-           $perc = ($sus_document_length/$text_length) * 100;
+            $perc = ($sus_document_length/$text_length) * 100;
+            if($perc > 100){
+                $perc = 100.00;
+            }
             $perc_link = "<a href=\"compare.php?id=$file_id&source=$source_document_id\">".round($perc,2)."</a>";
             if($perc > $threshold )
             $table2 = $table2."<tr><td>$web_link</td><td>$web_document</td><td>$perc_link %</td></tr>";
