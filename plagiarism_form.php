@@ -37,7 +37,7 @@ class plagiarism_setup_form extends moodleform {
         
         // Web Service Configuration
         $mform->addElement('text', 'crotpro_service_url', get_string('service_url', 'plagiarism_crotpro'));
-        $mform->setDefault('crotpro_service_url', 'http://220.90.197.31/~tosin');
+        $mform->setDefault('crotpro_service_url', 'http://beta.noplagiarism.org');
         $mform->addRule('crotpro_service_url', null, 'required', null, 'client');        
          
         $mform->addElement('text', 'crotpro_account_id', get_string('account_id', 'plagiarism_crotpro'));
