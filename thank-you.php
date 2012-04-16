@@ -13,7 +13,7 @@
 <h2>Thank you for registration!</h2>
 Your FREE account has been successfully created.<br />
 
-<p>Free Account ID: <b></b></p>Please copy - paste it to the Account ID on the CrotPro plugin page.<br />
+<p>Free Account ID: <b><?php echo $_GET['uid']; ?></b></p>Please copy - paste it to the Account ID on the CrotPro plugin page.<br />
 <p></p>
 <br />
 <br />
