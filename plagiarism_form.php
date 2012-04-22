@@ -31,9 +31,9 @@ class plagiarism_setup_form extends moodleform {
         $mform->addRule('crotpro_threshold', null, 'numeric', null, 'client');
         // Global Search settings
         
-        $mform->addElement('text', 'crotpro_culture_info', get_string('culture_info', 'plagiarism_crotpro'));
+        /*$mform->addElement('text', 'crotpro_culture_info', get_string('culture_info', 'plagiarism_crotpro'));
         $mform->addHelpButton('crotpro_culture_info', 'cultureinfo', 'plagiarism_crotpro');
-        $mform->setDefault('crotpro_culture_info', 'en-us');
+        $mform->setDefault('crotpro_culture_info', 'en-us');*/
         
         // Web Service Configuration
         $mform->addElement('text', 'crotpro_service_url', get_string('service_url', 'plagiarism_crotpro'));
