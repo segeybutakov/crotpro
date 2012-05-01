@@ -39,7 +39,7 @@ $string['globalsearchthreshold'] = 'Global search threshold';
 $string['globalsearchthreshold_help'] = 'Reserved for future development. Recommended value is 90.';
 $string['account_id'] = 'Account ID<script language="JavaScript">function win1() {
     var url = "registration.php?url="+document.getElementById("id_crotpro_service_url").value;
-    window.open(url,"Registration form","menubar=no,width=400,height=360,toolbar=no");
+    window.open(url,"Registration_form","menubar=no,width=400,height=360,toolbar=no");
     } </script><a href="javascript:win1()" onMouseOver="self.status=\'Open A Window\'; return true;"><br/><b>Free Account ID</b></a>';
 /*'Account ID<script language="JavaScript">function win1() {
     window.open("registration.php","Registraion form","menubar=no,width=460,height=360,toolbar=no");
@@ -57,7 +57,7 @@ $string['crotpro_help'] = 'Crot Pro is an anti-plagiarism tool which supports do
 $string['crotexplain'] = 'Crot Pro is a connector to plagiarism detection  service. <br/><br/>More information can be found at <a href="http://www.crotsoftware.com">www.crotsoftware.com</a> <br/>';
 
 $string['crotpro_reg'] = '<script language="JavaScript">function win1() {
-    window.open("registration.php","Registraion form","menubar=no,width=460,height=360,toolbar=no");
+    window.open("registration.php","Registration_form","menubar=no,width=460,height=360,toolbar=no");
     } </script><a href="javascript:win1()" onMouseOver="self.status=\'Open A Window\'; return true;"><b>FREE registration</b></a>';
 
 $string['default_threshold']='Default Threshold';
